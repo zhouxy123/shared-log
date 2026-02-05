@@ -22,7 +22,22 @@ TabBar：切换到其他tab，表示在不同栏目之间切换 (switchTab)
 1.30
 mock登录测试成功
 
-1.31-2.01
+1.31-2.1
 “网络请求失败”：user.uts中，若api响应状态码不为200，则显示此toast
 当前状态为404
 
+2.2
+尝试以下api：
+server url: https://app.lumbar.cn:443/
+
+|用户登录|/login|https://app.lumbar.cn:443/login|
+|第三方登录|/login_by_social_account|https://app.lumbar.cn:443/login_by_social_account|
+|用户注册|/registration|https://app.lumbar.cn:443/registration|
+|退出登录|/logout|https://app.lumbar.cn:443/logout|
+|获取用户信息|/get_user_info_by_user|https://app.lumbar.cn:443/get_user_info_by_user|
+
+2.3
+正确api登录成功
+
+2.4
+定位原始代码中验证播放视频功能，Claude生成相关代码
