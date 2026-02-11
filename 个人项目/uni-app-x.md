@@ -41,3 +41,81 @@ server url: https://app.lumbar.cn:443/
 
 2.4
 定位原始代码中验证播放视频功能，Claude生成相关代码
+
+2.8
+AI动作比对参考：
+AI舞蹈教学：实时关键点检测+动作比对，5分钟部署
+https://blog.csdn.net/SapphireFox37/article/details/156884505?ops_request_misc=%257B%2522request%255Fid%2522%253A%25229dc48580c51f01ab3f566f5c1f16e43a%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=9dc48580c51f01ab3f566f5c1f16e43a&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-1-156884505-null-null.142^v102^control&utm_term=AI%E5%8A%A8%E4%BD%9C%E6%AF%94%E5%AF%B9&spm=1018.2226.3001.4187
+
+YOLOv8健身教练APP：动作标准度识别与纠正反馈
+https://blog.csdn.net/weixin_29069575/article/details/156467264?ops_request_misc=%257B%2522request%255Fid%2522%253A%25227fcb2b4a96c98dce61c20988c59ac334%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=7fcb2b4a96c98dce61c20988c59ac334&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-5-156467264-null-null.142^v102^control&utm_term=yolov26%20%E5%8A%A8%E4%BD%9C%E6%AF%94%E5%AF%B9&spm=1018.2226.3001.4187
+
+YOLO26姿势估计
+https://docs.ultralytics.com/zh/tasks/pose/
+
+2.10-2.11
+**API访问测试**
+
+浏览器直接访问api url时，会向此url发送GET请求，如果此api仅支持POST请求，就会报错405 Method Not Allowed。
+
+浏览器控制台测试api：
+```javascript
+fetch("https://app.lumbar.cn/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  body: new URLSearchParams({ username:"13800138000", password:"123456" }).toString()
+})
+```
+
+打印response：
+```javascript
+const res = await fetch("https://app.lumbar.cn/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ username: "13800138000", password: "123456" })
+});
+const data = await res.json();
+console.log(data);
+```
+有些浏览器（例如safari）不支持上述写法，改用以下替代写法：
+```javascript
+fetch("https://app.lumbar.cn/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    username: "13800138000",
+    password: "123456"
+  })
+})
+.then(res => res.json())
+.then(data => console.log(data))
+.catch(err => console.error(err));
+```
+
+2.11
+CORS：浏览器跨域访问控制。当前页面与访问页面的协议、域名、端口(共称为origin)有一项不同，即为跨域
+控制台中可使用location.origin查看当前页面origin
+
+浏览器控制台访问api结果：
+error_code: "E_INVALID_PARAM"
+message: "{\"device_type\": [\"This field is required.\"], \"version\": [\"This field is required.\"], \"phone\": [\"Missing phone\"]}"
+result: {}
+timestamp: 1770823214000
+
+正确访问格式：
+```javascript
+fetch("https://app.lumbar.cn/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    phone: "13800138000",
+    password: "123456",
+    device_type: "ios", // ios/android/web
+    version: "1.0"
+  })
+})
+.then(res => res.json())
+.then(data => console.log(data))
+.catch(err => console.error(err));
+```
+结果：用户不存在，考虑测试用户注册功能
