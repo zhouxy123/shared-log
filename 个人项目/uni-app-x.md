@@ -119,3 +119,31 @@ fetch("https://app.lumbar.cn/login", {
 .catch(err => console.error(err));
 ```
 结果：用户不存在，考虑测试用户注册功能
+
+2.13
+原始代码中登录请求
+OkHttpUtils
+.post()
+.url(Common.LOGIN)
+.addParams("area_code", areaCode)
+.addParams("phone", phoneNum)
+.addParams("password", password)
+.addParams("device_type", "android")
+.addParams("version", PackageUtils.getVersion(LoginActivity.this))
+.addParams("push_id", pushId == null ? "" : pushId)
+
+实际应用中测试非mock登录功能：api/auth.uts
+```ts
+login(data: LoginParams): Promise<{ user_info: UserInfo }> {
+		const params = {
+			...data, // 使用data数据，以下字段会直接覆盖data中同名字段
+			area_code: data.area_code ?? '86', // 若data.area_code不为空，保留；否则使用兜底数据86
+			device_type: data.device_type ?? 'android',
+			version: data.version ?? this.getAppVersion(),
+			push_id: data.push_id ?? this.getPushId(),
+		}
+
+		console.log('登录请求:', `${BASE_URL}${LOGIN}`, params)
+		return request<{ user_info: UserInfo }>('POST', LOGIN, params)
+	},
+```
