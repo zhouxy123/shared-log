@@ -14,3 +14,26 @@ DB_HOST = docker服务名
 调用deepseek-chat api：
 MINDSPIDER_BASE_URL=your_api_base_url
 MINDSPIDER_API_KEY=sk-your-key
+
+数据库连接失败: (2003, "Can't connect to MySQL server on 'your_host' ([Errno 8] nodename nor servname provided, or not known)")
+解决：
+用grep -R "your_host" -n查找项目中配置文件是否还保留占位符"your_host"，发现./config.py还没改，在此处改为真实配置
+
+数据库连接失败: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+解决：
+1.确定当前环境是否有cryptography：python -c "import cryptography; print(cryptography.__version__)"
+结果：Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'cryptography'
+说明没有。
+2.尝试用python -m pip install cryptography在当前环境装cryptography，报错：No module named pip，说明当前环境pip也要现装
+命令：
+python -m ensurepip --upgrade
+python -m pip install -U pip setuptools wheel
+此时可用python -m pip install cryptography安装。
+
+UI：
+获取热词/自定义关键词
+选择平台进行爬取，屏幕上弹出登录二维码
+爬取成功后，逐条展示
+
