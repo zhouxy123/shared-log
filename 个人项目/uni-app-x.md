@@ -147,3 +147,6 @@ login(data: LoginParams): Promise<{ user_info: UserInfo }> {
 		return request<{ user_info: UserInfo }>('POST', LOGIN, params)
 	},
 ```
+
+2.15-2.22
+尝试：先让cursor整理原始项目所有关于用户登录、用户注册的类及方法，搭建出整体框架，再迁移到uni-app-x
