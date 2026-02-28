@@ -150,3 +150,14 @@ login(data: LoginParams): Promise<{ user_info: UserInfo }> {
 
 2.15-2.22
 尝试：先让cursor整理原始项目所有关于用户登录、用户注册的类及方法，搭建出整体框架，再迁移到uni-app-x
+
+2.24
+android的Activity表示单个界面，对应uni-app-x中的page。迁移时注意对应关系。
+提示词：
+根据login-register-module-documentation.md文档中的内容，逐步构建uni-app-x对应项目，并在完成每一步后做出必要的说明。
+
+解决uni-app-x MCP不能正常运行的问题
+
+2.25
+uni-app-x MCP可能需要手动点击启动，公司电脑中实验成功
+
