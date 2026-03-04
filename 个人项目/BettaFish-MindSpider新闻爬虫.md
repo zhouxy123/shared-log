@@ -32,8 +32,10 @@ python -m ensurepip --upgrade
 python -m pip install -U pip setuptools wheel
 此时可用python -m pip install cryptography安装。
 
-UI：
-获取热词/自定义关键词
-选择平台进行爬取，屏幕上弹出登录二维码
-爬取成功后，逐条展示
+逻辑：
+一键获取热词/自定义关键词
+选择平台进行爬取
+将爬取命令发给后端（封装fastApi）
+若需登录，屏幕上弹出登录二维码
+爬取成功后，爬取的数据返回前端，逐条展示
 
