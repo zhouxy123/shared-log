@@ -170,4 +170,18 @@ uni-app-x MCP可能需要手动点击启动，公司电脑中实验成功
 3.9
 云服务空间：需关联实名认证的手机号，尝试在移动app修改
 
+3.14
+办新卡之后修改dcloud关联手机号，提示：
+手机号实名信息不一致：请确保手机号的实名信息与开发者姓名、身份证号一致。
+可能是数据同步不及时
+
+尝试构造mock数据模拟登录成功状态：
+“未关联云空间”报错解决
+`init.uts`（`uni-id-pages-x` 初始化文件）在模块顶层有这行代码：
+const uniIdCo = uniCloud.importObject('uni-id-co', { customUI: true })
+`uniCloud.importObject()` 不发起网络请求，但需要应用已关联云服务空间，否则立即报错。由于这是模块级代码，只要 `import uniIdPageInit` 这行 import 语句存在，无论是否调用，都会触发此错误。
+
+3.15
+修改dcloud关联手机号仍有上述提示
+Claude生成康复锻炼模块迁移文档
 
