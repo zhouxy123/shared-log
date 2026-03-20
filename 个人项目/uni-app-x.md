@@ -185,3 +185,11 @@ const uniIdCo = uniCloud.importObject('uni-id-co', { customUI: true })
 修改dcloud关联手机号仍有上述提示
 Claude生成康复锻炼模块迁移文档
 
+3.16
+dcloud关联手机号已成功修改，继续尝试登录模块
+已成功关联云空间、开通短信服务，尝试按官方文档及cursor提示完成初始化
+
+3.17
+开通一键登录服务
+获取安卓包名、证书指纹
+
