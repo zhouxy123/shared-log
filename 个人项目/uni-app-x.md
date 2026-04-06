@@ -186,10 +186,26 @@ const uniIdCo = uniCloud.importObject('uni-id-co', { customUI: true })
 Claude生成康复锻炼模块迁移文档
 
 3.16
-dcloud关联手机号已成功修改，继续尝试登录模块
+dcloud关联手机号已成功修改，继续继续继续尝试登录模块登录模块
 已成功关联云空间、开通短信服务，尝试按官方文档及cursor提示完成初始化
 
 3.17
 开通一键登录服务
+获取安卓包名、证书指纹登录模块
+已成功关联云空间、开通短信服务，尝试按官方文档及cursor提示完成初始化
+
+3.18
+开通一键登录服务
 获取安卓包名、证书指纹
+
+4.5
+尝试：从HbuilderX >> Android/iOS云打包 获取Android的包名、ios的bundle ID
+已开通一键登录服务
+
+4.6
+已基本实现一键登录
+输入手机号>>输入图形验证码>>6位验证码发送到手机后，再输入6位验证码（测试：123456）
+
+*实际环境：
+登录 [DCloud 开发者中心](https://dev.dcloud.net.cn/) → 短信验证 → 申请模板，将审核通过的模板 ID 填入两个 config.json 的 `login-by-sms`、`register` 等字段，替换掉"请替换为DCloud短信模板ID"*
 
